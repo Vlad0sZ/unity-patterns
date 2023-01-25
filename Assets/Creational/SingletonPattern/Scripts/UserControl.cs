@@ -15,13 +15,10 @@ namespace Creational.SingletonPattern.Scripts
 
         private State state;
         private Unit selectedUnit;
-        private Gameboard board;
-        
+
         private void Start()
         {
             state = State.SelectingUnit;
-            board = FindObjectOfType<Gameboard>();
-            
         }
 
         private void Update()
@@ -35,25 +32,27 @@ namespace Creational.SingletonPattern.Scripts
 
         private void OnMouseClicked()
         {
-            switch(state)
+            switch (state)
             {
-            case State.SelectingUnit:
-                ClickUnitToSelect();
-                break;
-            case State.SelectingCell:
-                ClickCellToSelect();
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
+                case State.SelectingUnit:
+                    ClickUnitToSelect();
+                    break;
+                case State.SelectingCell:
+                    ClickCellToSelect();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
         private void ClickUnitToSelect()
         {
-            // TODO add gameboard instance 
-            if (board.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
+            // TODO add gameboard instance
+            if (!Gameboard.IsExists()) return;
+            
+            if (Gameboard.Instance.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
             {
-                var unit = board.GetUnit(clickedCell);
+                var unit = Gameboard.Instance.GetUnit(clickedCell);
                 if (unit) Debug.Log("Unit clicked");
                 selectedUnit = unit;
             }

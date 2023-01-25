@@ -6,8 +6,12 @@ namespace Creational.SingletonPattern.Scripts
     public class Gameboard : MonoBehaviour
     {
         // TODO add gameboard instance
-        
-        
+
+        private static Gameboard instance;
+        public static Gameboard Instance => instance;
+        public static bool IsExists() => instance != null;
+
+
         public int Width;
 
         public int Height;
@@ -20,6 +24,15 @@ namespace Creational.SingletonPattern.Scripts
 
         private void Awake()
         {
+            if (instance == null)
+                instance = this;
+            else
+            {
+                Destroy(this);
+                return;
+            }
+
+
             grid = GetComponent<Grid>();
             content = new Unit[Width, Height];
 
