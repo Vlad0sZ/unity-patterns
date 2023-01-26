@@ -15,13 +15,10 @@ namespace Creational.SingletonPattern.Scripts
 
         private State state;
         private Unit selectedUnit;
-        private Gameboard board;
         
         private void Start()
         {
             state = State.SelectingUnit;
-            board = FindObjectOfType<Gameboard>();
-            
         }
 
         private void Update()
@@ -51,9 +48,11 @@ namespace Creational.SingletonPattern.Scripts
         private void ClickUnitToSelect()
         {
             // TODO add gameboard instance 
-            if (board.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
+            if(!Gameboard.IsExists()) return;
+            
+            if (Gameboard.Instance.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
             {
-                var unit = board.GetUnit(clickedCell);
+                var unit = Gameboard.Instance.GetUnit(clickedCell);
                 if (unit) Debug.Log("Unit clicked");
                 selectedUnit = unit;
             }

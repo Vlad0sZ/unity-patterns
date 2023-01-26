@@ -16,12 +16,11 @@ namespace Creational.SingletonPattern.Scripts
         public void Start()
         {
             // TODO add Gameboard instance 
-            var board = FindObjectOfType<Gameboard>();
-            if (board == null) return;
+            if (!Gameboard.IsExists()) return;
 
-            var cell = board.GetClosestCell(transform.position);
-            board.SetUnit(cell, this);
-            transform.position = board.GetCellCenterWorld(cell);
+            var cell = Gameboard.Instance.GetClosestCell(transform.position);
+            Gameboard.Instance.SetUnit(cell, this);
+            transform.position = Gameboard.Instance.GetCellCenterWorld(cell);
         }
     }
 }
