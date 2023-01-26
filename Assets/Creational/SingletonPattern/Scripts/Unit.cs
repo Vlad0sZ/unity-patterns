@@ -13,14 +13,11 @@ namespace Creational.SingletonPattern.Scripts
         }
 
 
-        public void Start()
+        public virtual void Init(Gameboard gameBoard)
         {
-            // TODO add Gameboard instance 
-            if (!Gameboard.IsExists()) return;
-
-            var cell = Gameboard.Instance.GetClosestCell(transform.position);
-            Gameboard.Instance.SetUnit(cell, this);
-            transform.position = Gameboard.Instance.GetCellCenterWorld(cell);
+            var cell = gameBoard.GetClosestCell(transform.position);
+            gameBoard.SetUnit(cell, this);
+            transform.position = gameBoard.GetCellCenterWorld(cell);
         }
     }
 }

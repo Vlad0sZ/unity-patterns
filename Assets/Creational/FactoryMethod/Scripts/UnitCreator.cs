@@ -7,6 +7,6 @@ namespace Creational.FactoryMethod.Scripts
     public abstract class UnitCreator : MonoBehaviour
     {
         // Фабричный метод для создания юнитов на доске
-        public abstract Unit CreateUnit( /* TODO add args */);
+        public abstract Unit CreateUnit(Vector3 position, Gameboard gameBoard);
     }
 }
