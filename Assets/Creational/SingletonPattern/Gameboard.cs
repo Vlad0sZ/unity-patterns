@@ -1,17 +1,11 @@
 ﻿using System.ComponentModel.Design;
+using Demo_Project.Scripts;
 using UnityEngine;
 
 namespace Creational.SingletonPattern.Scripts
 {
     public class Gameboard : MonoBehaviour
     {
-        // TODO add gameboard instance
-
-        private static Gameboard instance;
-        public static Gameboard Instance => instance;
-        public static bool IsExists() => instance != null;
-
-
         public int Width;
 
         public int Height;
@@ -24,15 +18,6 @@ namespace Creational.SingletonPattern.Scripts
 
         private void Awake()
         {
-            if (instance == null)
-                instance = this;
-            else
-            {
-                Destroy(this);
-                return;
-            }
-
-
             grid = GetComponent<Grid>();
             content = new Unit[Width, Height];
 
@@ -96,6 +81,13 @@ namespace Creational.SingletonPattern.Scripts
         public Vector3 GetCellCenterWorld(Vector3Int cell)
         {
             return grid.GetCellCenterWorld(cell);
+        }
+
+        public Vector3Int GetCenterCell()
+        {
+            var x = Width % 2 == 0 ? Width / 2 - 1 : Width / 2;
+            var z = Height % 2 == 0 ? Height / 2 - 1 : Height / 2;
+            return new Vector3Int(x,0,z);
         }
 
 

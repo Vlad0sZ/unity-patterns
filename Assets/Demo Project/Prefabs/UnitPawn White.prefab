@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &7775200645112574895
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5248298677752858933}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01585153, y: 0.018240226, z: 0.029210558}
-  m_Center: {x: 0.00018182976, y: -0.00026388, z: 0.014581649}
 --- !u!1 &6048181542413222144
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1601981291712660808}
-  - component: {fileID: 7869326834288996072}
   m_Layer: 0
-  m_Name: UnitWhite
+  m_Name: UnitPawn White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,20 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7869326834288996072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6048181542413222144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd0d770a2ee02c42bcdaab5473913c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Side: 0
-  Distance: 4
 --- !u!1001 &4905785617152062564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,7 +93,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1f14ce912bf994049b3b7fc109b84ac3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 905f0b53ff738d34fac012cf8a1923f6, type: 2}
+      objectReference: {fileID: 2100000, guid: fef94df83baaacb4fa20f34277bb8c42, type: 2}
     - target: {fileID: 919132149155446097, guid: 1f14ce912bf994049b3b7fc109b84ac3, type: 3}
       propertyPath: m_Name
       value: GremDog
@@ -138,3 +110,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f14ce912bf994049b3b7fc109b84ac3, type: 3}
   m_PrefabInstance: {fileID: 4905785617152062564}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &7775200645112574895
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248298677752858933}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01585153, y: 0.018240226, z: 0.029210558}
+  m_Center: {x: 0.00018182976, y: -0.00026388, z: 0.014581649}

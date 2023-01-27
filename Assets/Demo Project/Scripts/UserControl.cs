@@ -1,7 +1,8 @@
 ﻿using System;
+using Creational.SingletonPattern.Scripts;
 using UnityEngine;
 
-namespace Creational.SingletonPattern.Scripts
+namespace Demo_Project.Scripts
 {
     public class UserControl : MonoBehaviour
     {
@@ -13,6 +14,8 @@ namespace Creational.SingletonPattern.Scripts
 
         public Camera cam;
 
+        public Gameboard board;
+        
         private State state;
         private Unit selectedUnit;
 
@@ -48,11 +51,11 @@ namespace Creational.SingletonPattern.Scripts
         private void ClickUnitToSelect()
         {
             // TODO add gameboard instance
-            if (!Gameboard.IsExists()) return;
+            if (board) return;
             
-            if (Gameboard.Instance.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
+            if (board.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
             {
-                var unit = Gameboard.Instance.GetUnit(clickedCell);
+                var unit = board.GetUnit(clickedCell);
                 if (unit) Debug.Log("Unit clicked");
                 selectedUnit = unit;
             }
