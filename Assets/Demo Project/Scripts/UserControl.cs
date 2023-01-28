@@ -6,16 +6,9 @@ namespace Demo_Project.Scripts
 {
     public class UserControl : MonoBehaviour
     {
-        enum State
-        {
-            SelectingUnit,
-            SelectingCell
-        }
-
         public Camera cam;
+        public CellSelector selector;
 
-        public Gameboard board;
-        
         private void Update()
         {
             if (Input.GetMouseButtonUp(0))
@@ -26,14 +19,18 @@ namespace Demo_Project.Scripts
 
         private void ClickUnitToSelect()
         {
-            // TODO add gameboard instance
-            if (board) return;
-            
+            var board = Gameboard.Instance;
+            if (board== null) return;
+
             if (board.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
             {
-                var unit = board.GetUnit(clickedCell);
-                if (unit) Debug.Log("Unit clicked");
+                selector.SelectUnit(board.GetUnit(clickedCell));
             }
+            else
+            {
+                selector.SelectUnit(null);
+            }
+           
         }
 
         private void ClickCellToSelect()

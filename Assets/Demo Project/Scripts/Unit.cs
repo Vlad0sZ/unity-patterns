@@ -5,12 +5,19 @@ namespace Demo_Project.Scripts
 {
     public class Unit : MonoBehaviour
     {
+        public enum Side
+        {
+            White,
+            Black
+        }
+
+        public Side team;
+        
         public Vector3Int CurrentCell { get; private set; }
-
-        public Gameboard board;
-
+        
         public void Start()
         {
+            Gameboard board = Gameboard.Instance;
             if (board == null) return;
 
             CurrentCell = board.GetClosestCell(transform.position);
@@ -24,6 +31,11 @@ namespace Demo_Project.Scripts
             transform.rotation = Quaternion.LookRotation(lookPosition - placementCell, Vector3.up);
 
             board.SetUnit(CurrentCell, this);
+        }
+
+        public virtual int GetSelectedCell(Vector3Int[] result, Gameboard board)
+        {
+            return 0;
         }
     }
 }
