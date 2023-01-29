@@ -11,7 +11,7 @@ namespace Demo_Project.Scripts
 
         private readonly List<GameObject> displayPool = new List<GameObject>();
         private int displayedCellCount;
-        private Vector3Int[] displayedCells;
+        public Vector3Int[] displayedCells;
 
         private GameObject selector;
         private Unit selectedUnit;

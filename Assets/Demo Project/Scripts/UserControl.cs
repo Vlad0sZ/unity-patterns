@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Creational.SingletonPattern.Scripts;
 using UnityEngine;
 
@@ -8,13 +8,20 @@ namespace Demo_Project.Scripts
     {
         public Camera cam;
         public CellSelector selector;
+        
+        public Unit.Side activeSide;
 
         private void Update()
         {
             if (Input.GetMouseButtonUp(0))
             {
-                ClickUnitToSelect();
+                OnMouseClicked();
             }
+        }
+
+        private void OnMouseClicked()
+        {
+            ClickUnitToSelect();
         }
 
         private void ClickUnitToSelect()
@@ -24,7 +31,9 @@ namespace Demo_Project.Scripts
 
             if (board.Raycast(cam.ScreenPointToRay(Input.mousePosition), out var clickedCell))
             {
-                selector.SelectUnit(board.GetUnit(clickedCell));
+                var unit = board.GetUnit(clickedCell);
+                if(unit != null && unit.team == activeSide) selector.SelectUnit(unit);
+                else selector.SelectUnit(null);
             }
             else
             {
@@ -35,8 +44,22 @@ namespace Demo_Project.Scripts
 
         private void ClickCellToSelect()
         {
-            // TODO add gameboard instance
-            throw new NotImplementedException();
+            if (Gameboard.Instance.Raycast(cam.ScreenPointToRay(Input.mousePosition),
+                    out Vector3Int clickedCell))
+            {
+                if (selector.displayedCells.Contains(clickedCell))
+                {
+                    var unit = Gameboard.Instance.GetUnit(clickedCell);
+                    
+                    if (unit == null)
+                    {
+                        
+                    }
+                }
+            }
+            
+            selector.SelectUnit(null);
+            // state
         }
     }
 }
